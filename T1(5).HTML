@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #todo-container {
+            max-width: 400px;
+            margin: 50px auto;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            position: relative;
+        }
+
+        li.completed {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="todo-container">
+        <h2>To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <button id="addTaskBtn">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Add Task
+            $("#addTaskBtn").click(function () {
+                var taskText = $("#taskInput").val();
+                if (taskText.trim() !== "") {
+                    $("#taskList").append('<li>' + taskText + '<span class="delete-btn">Delete</span></li>');
+                    $("#taskInput").val("");
+                }
+            });
+
+            // Delete Task
+            $("#taskList").on("click", ".delete-btn", function () {
+                $(this).closest("li").remove();
+            });
+
+            // Complete Task
+            $("#taskList").on("click", "li", function () {
+                $(this).toggleClass("completed", 300);
+            });
+        });
+    </script>
+
+</body>
+</html>

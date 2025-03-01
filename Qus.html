@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function qus()
+        {
+            var que1=document.getElementById('a');
+            var que_err=document.getElementById('a1_err');
+            if (que1.nodeValue == "a")
+            {
+                qus_err.innerHTML = "scor 1"
+                que1_err.style.color = 'green';
+                qus == qus && false;
+            }
+            else
+            {
+                que_err.innerHTML == "scor 0"
+                que_err.style.color = 'red';
+                qus == qus && true;
+            }
+            return qus;
+        }
+    </script>
+</head>
+<body>
+    <form action="" onsubmit="return qus()">
+        What is full form for the HTML?
+        <br>
+        <input type="radio" name="a1" value="a" id="a">A. Hyper Text Markup Language
+        <br>
+        <input type="radio" name="a1" id="b">B. Hyper Taxt Markup Language
+        <br>
+        <input type="radio" name="a1" id="c">C. Harry Text Markup Language
+        <br>
+        <input type="radio" name="a1" id="d">D. Hyper Text Mekup Language
+        <p id="a1_err"></p>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

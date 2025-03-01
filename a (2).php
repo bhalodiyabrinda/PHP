@@ -1,0 +1,106 @@
+<!-- email:- /^[w._-]+@[\w.]+\.[a-zA-Z]{2,3}$/
+https://github.com/jankikansagra30/Btech -->
+<html>
+    <head>
+        <title>Page Title</title>
+        <script>
+            function validate(){
+                var validate = true;
+                //name
+                var name1 = document.getElementById('nm');
+                var name_err = document.getElementById('nm_err');
+                if(name1.value == ""){
+                    name_err.innerHTML = "Name is required field";
+                    name_err.style.color = 'red';
+                    validate = validate && false;
+                }
+                else{
+                    var reg_name = /^[a-zA-Z]{2,40}$/
+                    if(reg_name.test(name1.value)){
+                        name_err.innerHTML = "";
+                        validate = validate && true;
+                    }
+                    else{
+                        name_err.innerHTML = 'Name contains only letters';
+                        name_err.style.color = 'red';
+                        validate = validate && false;
+                    }
+                }
+                //mobail number
+                var phone1 = document.getElementById('pn');
+                var phone_err = document.getElementById('pn_err');
+                if(phone1.value == ""){
+                    phone_err.innerHTML = "Phone Number is required field";
+                    phone_err.style.color = 'red';
+                    validate = validate && false;
+                }
+                else{
+                    var reg_phone = /^[0-9]{10}$/
+                    if(reg_phone.test(phone1.value)){
+                        phone_err.innerHTML = '';
+                        validate = validate && true;
+                    }
+                    else{
+                        phone_err.innerHTML = 'Invalid Phone Number';
+                        phone_err.style.color = 'red';
+                        validate = validate && false;
+                    }
+                }
+                //email id
+                var email1 = document.getElementById('mi');
+                var email_err = document.getElementById('mi_err');
+                if(email1.value == ""){
+                    email_err.innerHTML = "Email address is required";
+                    email_err.style.color = 'red';
+                    validate = validate && false;
+                }
+                else{
+                    var reg_email = /^[\w._-]+@[\w.]+\.[a-zA-Z]{2,3}$/
+                    if(reg_email.test(email1.value)){
+                        email_err.innerHTML = '';
+                        validate = validate && true;
+                    }
+                    else{
+                        email_err.innerHTML = 'Invalid Email Address';
+                        email_err.style.color = 'red';
+                        validate = validate && false;
+                    }
+                }
+                //password
+                var password1 = document.getElementById('pa');
+                var password_err = document.getElementById('pa_err');
+                if(password1.value == ""){
+                    password_err.innerHTML = "password is required";
+                    password_err.style.color = 'red';
+                    validate = validate && false;
+                }
+                else{
+                    var reg_password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+                    if(reg_password.test(password1.value)){
+                        password.innerHTML = '';
+                        validate = validate && true;
+                    }
+                    else{
+                        password_err.innerHTML = 'Invalid password';
+                        password_err.style.color = 'red';
+                        validate = validate && false;
+                    }
+                }
+                return validate; 
+            }
+        </script>
+    </head>
+    <body>
+        <form action="" onsubmit="return validate()">
+            Enter Your Name : <input type="text" name="nm1" id="nm">
+            <p id="nm_err"></p>
+            Enter Mobile Number : <input type="number" name="pn1" id="pn">
+            <p id="pn_err"></p>
+            Enter Email ID : <input type="text" name="mi1" id="mi">
+            <p id="mi_err"></p>
+            Enter Your Password : <input type="password" name="pa1" id="pa">
+            <p id="pa_err"></p>
+            <input type="submit" value="Register">
+        </form>
+    </body>
+</html>

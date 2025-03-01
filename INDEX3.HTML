@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDEX3</title>
+    <script>
+        function Maximum()
+        {
+            var a= parseInt(document.getElementById('n1').value);
+            var b= parseInt(document.getElementById('n2').value);
+            var c= parseInt(document.getElementById('n3').value);
+            if(a>b & a>c)
+            {
+                var max= a;
+            }
+            else if(b>c & b>a)
+            {
+                max = b;
+            }
+            else
+            {
+                max= c;
+            }
+            document.getElementById('p1').innerHTML= max;
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        <input type="text" name="" id="n1">
+        <br>
+        <input type="text" name="" id="n2">
+        <br>
+        <input type="text" name="" id="n3">
+        <br>
+        <input type="button" value="Find Maximum" onclick="Maximum()">
+        <p id="p1">Maximum value</p> 
+    </form>
+</body>
+</html> 

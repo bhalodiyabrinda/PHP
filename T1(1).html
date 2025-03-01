@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Table</title>
+<script src="jquery-3.7.1.min.js"></script>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+
+<div id="tableContainer">
+  <button id="generateTable">Generate Table</button>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('#generateTable').on('click', function() {
+    var rows = parseInt(prompt('Enter number of rows:'));
+    var cols = parseInt(prompt('Enter number of columns:'));
+    
+    if (isNaN(rows) || isNaN(cols) || rows <= 0 || cols <= 0) {
+      alert('Please enter valid number of rows and columns.');
+      return;
+    }
+    
+    var table = $('<table>');
+    
+    for (var i = 0; i < rows; i++) {
+      var row = $('<tr>');
+      for (var j = 0; j < cols; j++) {
+        row.append($('<td>').text('Row ' + (i+1) + ', Col ' + (j+1)));
+      }
+      table.append(row);
+    }
+    
+    $('#tableContainer').empty().append(table);
+  });
+});
+</script>
+
+</body>
+</html>

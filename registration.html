@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Page with Additional Fields</title>
+  <style>
+    /* Your existing CSS styles remain unchanged */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: rgb(188, 216, 239);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    img {
+      
+      width: 100%;
+      height: 100%;
+      display: block;
+      margin: auto;
+    }
+
+    .registration-container {
+      background-image: url(Wooden\ Furniture\ Promotion\ Instagram\ Story.png);
+      
+      background-size: cover;
+
+      border-radius: 8px;
+      box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 500px;
+      max-width: 100%;
+      padding: 20px;
+      text-align: center;
+      
+    }
+
+    .registration-container h2 {
+      color: #333;
+    }
+
+    .registration-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      opacity: 3px;
+      text-align: center;
+    }
+
+    .form-input {
+      text-align: center;padding: 10px;
+      margin-left: 120px;
+      border: 1px solid;
+      opacity: inherit;
+      border-radius: 4px;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .error-message {
+      color: #ff0000;
+      margin-top: 5px;
+    }
+
+    .registration-button {
+      background-color: burlywood;
+      width: 50%;
+      margin-left: 120px;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .registration-button:hover {
+      background-color: #45a049;
+    }
+    .profile-photo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-photo input {
+      margin-top: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="registration-container">
+  <h2>furniture</h2>
+  <form class="registration-form" id="registrationForm" action="#" method="post">
+   <br><br><br>
+    <input class="form-input" type="text" name="name" id="name" placeholder="Full Name" required>
+    <div id="nameError" class="error-message"></div>
+
+    <input class="form-input" type="text" name="username" id="username" placeholder="Username" required>
+    <div id="usernameError" class="error-message"></div>
+
+    <input class="form-input" type="password" name="password" id="password" placeholder="Password" required>
+    <div id="passwordError" class="error-message"></div>
+
+    <input class="form-input" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+    <div id="confirmPasswordError" class="error-message"></div>
+
+    <input class="form-input" type="text" name="address" id="address" placeholder="Address" required>
+    <div id="addressError" class="error-message"></div>
+
+    <button class="registration-button" type="button" onclick="validateRegistration()">Register</button>
+  </form>
+</div>
+
+<script>
+  function validateRegistration() {
+    // Reset error messages
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("usernameError").innerText = "";
+    document.getElementById("passwordError").innerText = "";
+    document.getElementById("confirmPasswordError").innerText = "";
+    document.getElementById("addressError").innerText = "";
+
+    // Get input values
+    var name = document.getElementById("name").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
+    var address = document.getElementById("address").value;
+
+    // Check for empty fields
+    if (name === "") {
+      document.getElementById("nameError").innerText = "Name is required";
+      return;
+    }
+
+    if (username === "") {
+      document.getElementById("usernameError").innerText = "Username is required";
+      return;
+    }
+
+    if (password === "") {
+      document.getElementById("passwordError").innerText = "Password is required";
+      return;
+    }
+
+    if (confirmPassword === "") {
+      document.getElementById("confirmPasswordError").innerText = "Confirm Password is required";
+      return;
+    }
+
+    if (address === "") {
+      document.getElementById("addressError").innerText = "Address is required";
+      return;
+    }
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      document.getElementById("confirmPasswordError").innerText = "Passwords do not match";
+      return;
+    }
+
+    alert("Registration successful!"); // Replace this with your actual registration logic
+  }
+</script>
+
+</body>
+</html>

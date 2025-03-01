@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="myForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            // Custom validation rules for each field
+            var validationRules = {
+                username: {
+                    required: true,
+                    minLength: 3,
+                    maxLength: 15
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                    minLength: 6
+                }
+            };
+
+            // Function to validate a specific field based on rules
+            function validateField(field, value) {
+                var rules = validationRules[field];
+                var errorMessage = "";
+
+                if (rules.required && value.trim() === "") {
+                    errorMessage = "This field is required.";
+                } else if (rules.minLength && value.length < rules.minLength) {
+                    errorMessage = "Minimum length is " + rules.minLength + " characters.";
+                } else if (rules.maxLength && value.length > rules.maxLength) {
+                    errorMessage = "Maximum length is " + rules.maxLength + " characters.";
+                } else if (rules.email) {
+                    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(value)) {
+                        errorMessage = "Invalid email address.";
+                    }
+                }
+
+                return errorMessage;
+            }
+
+            // Function to display validation feedback
+            function displayValidationFeedback(field, errorMessage) {
+                $("#" + field + "-error").text(errorMessage);
+            }
+
+            // Function to validate the entire form
+            function validateForm() {
+                var isValid = true;
+
+                // Loop through each form field
+                $("#myForm input").each(function () {
+                    var field = $(this).attr("name");
+                    var value = $(this).val();
+                    var errorMessage = validateField(field, value);
+
+                    // Display validation feedback
+                    displayValidationFeedback(field, errorMessage);
+
+                    // Update isValid based on the validation result
+                    if (errorMessage !== "") {
+                        isValid = false;
+                    }
+                });
+
+                return isValid;
+            }
+
+            // Real-time validation on input change
+            $("#myForm input").on("input", function () {
+                var field = $(this).attr("name");
+                var value = $(this).val();
+                var errorMessage = validateField(field, value);
+
+                // Display validation feedback
+                displayValidationFeedback(field, errorMessage);
+            });
+
+            // Form submission
+            $("#myForm").submit(function (event) {
+                if (!validateForm()) {
+                    event.preventDefault(); // Prevent form submission if validation fails
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

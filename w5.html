@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Form</title>
+<style>
+    .container {
+        width: 50%;
+        margin: 50px auto;
+      }
+      
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      #paymentImageContainer {
+        margin-top: 20px;
+      }
+      
+      #paymentImage {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .btn:hover {
+        background-color: #0056b3;
+      }
+      img{
+        height: 50px;
+        width: 100px;
+      }
+      
+</style>
+<script src="jquery-3.7.1.min.js"></script>
+  <script src="jquery.validate.js"></script>
+<script>
+    $(document).ready(function(){
+        // Function to set payment image based on selected option
+        function setPaymentImage() {
+          var selectedPaymentMethod = $('input[name="paymentMethod"]:checked').val();
+          var imageUrl = '';
+          switch(selectedPaymentMethod) {
+            case 'bankTransfer':
+              imageUrl = 'bank_transfer_image.jpg';
+              break;
+            case 'upi':
+              imageUrl = 'upi_image.jpg';
+              break;
+            case 'cash':
+              imageUrl = 'cash_payment_image.jpg';
+              break;
+            default:
+              imageUrl = '';
+          }
+          $('#paymentImage').attr('src', imageUrl);
+        }
+        
+        // Update payment image when payment method changes
+        $('input[name="paymentMethod"]').change(function(){
+          setPaymentImage();
+        });
+      
+        // Form submission
+        $('#paymentForm').submit(function(event){
+          event.preventDefault();
+          // Handle form submission here
+          var selectedPaymentMethod = $('input[name="paymentMethod"]:checked').val();
+          console.log('Selected Payment Method:', selectedPaymentMethod);
+          // Add your submission logic here
+        });
+      });
+      
+</script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Payment Form</h2>
+  <form id="paymentForm">
+    <div class="form-group">
+      <input type="radio" id="bankTransfer" name="paymentMethod" value="bankTransfer">
+      <img src="a.png" alt="">
+      <label for="bankTransfer">Bank Transfer</label>
+      <br>
+      <input type="radio" id="upi" name="paymentMethod" value="upi">
+      <label for="upi">UPI</label>
+      <br>
+      <input type="radio" id="cash" name="paymentMethod" value="cash">
+      <label for="cash">Cash Payment</label>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+
+</body>
+</html>

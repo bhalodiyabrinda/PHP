@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDEX4</title>
+    <script>
+        function Multipal()
+        {
+            var a= parseInt(document.getElementById('n1').value);
+            var b= parseInt(document.getElementById('n2').value);
+            var Multipal = a*b;
+            document.getElementById('p1').innerHTML=Multipal;
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        <input type="text" name="" id="n1">
+        <br>
+        <input type="text" name="" id="n2">
+        <br>
+        <input type="button" value="Multipal" onclick="Multipal()">
+        <p id="p1">Display value here</p> 
+    </form>
+</body>
+</html> 

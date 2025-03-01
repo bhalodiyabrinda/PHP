@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Form</title>
+<style>
+  .container {
+    width: 50%;
+    margin: 50px auto;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .paymentInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+</style>
+<script src="jquery-3.7.1.min.js"></script>
+  <script src="jquery.validate.js"></script>
+<script>
+  $(document).ready(function(){
+    $('#paymentForm').submit(function(event){
+      event.preventDefault();
+      
+      // Get values from input fields
+      var bankTransferValue = $('#bankTransferInput').val();
+      var upiValue = $('#upiInput').val();
+      var cashValue = $('#cashInput').val();
+      
+      // Check which payment method is filled and handle submission accordingly
+      if(bankTransferValue !== '') {
+        console.log('Bank Transfer Details:', bankTransferValue);
+        // Handle bank transfer submission
+      } else if(upiValue !== '') {
+        console.log('UPI Details:', upiValue);
+        // Handle UPI submission
+      } else if(cashValue !== '') {
+        console.log('Cash Payment Details:', cashValue);
+        // Handle cash payment submission
+      } else {
+        alert('Please provide payment details.');
+      }
+    });
+  });
+</script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Payment Form</h2>
+  <form id="paymentForm">
+    <div class="form-group">
+      <label for="bankTransferInput">Bank Transfer</label>
+      <input type="text" class="form-control paymentInput" id="bankTransferInput" placeholder="Bank account details">
+    </div>
+    <div class="form-group">
+      <label for="upiInput">UPI</label>
+      <input type="text" class="form-control paymentInput" id="upiInput" placeholder="UPI ID">
+    </div>
+    <div class="form-group">
+      <label for="cashInput">Cash Payment</label>
+      <input type="radio" class="form-control paymentInput" id="cashInput" placeholder="Amount">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<img src="" alt="">
+</body>
+</html>
